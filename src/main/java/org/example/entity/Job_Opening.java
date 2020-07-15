@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,8 @@ import lombok.ToString;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data   //generate Getter and Setter
@@ -17,11 +19,19 @@ import java.util.List;
 @Entity
 public class Job_Opening {
     @Id
-    private int job_opening_id;
-    private Date opening_date;
-    private DateTime deadline;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer jobOpeningId;
+    private Date openingDate;
 
-    @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jo_ap_fk", referencedColumnName = "job_opening_id")
+    @OneToMany(mappedBy = "job_opening")
     private List<Application> applicationList ;
+
+    @ManyToOne(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_JobProfileId", referencedColumnName = "jobProfileId")
+    private Job_Profile job_profile;
+
+    //This has to be deleted    :Maxi 9.07 11:46
+    @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "jo_joi_fk", referencedColumnName = "job_opening_information_id")
+    private Job_Opening_Information job_opening_information;
 }

@@ -1,121 +1,54 @@
 package org.example.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.Date;
+
+import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.h2.util.json.JSONValue;
+@Getter
+@Setter
 public class JobOpeningInformation {
     /*
     Attributes
      */
-    private String openingId;
-    private int openSpots;
-    private int salary;
-    private String jobTitle;
-    private String openingName;
-    private String jobDescription;
-    private String requiredQualifications;
-    private String additionalInformation;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate deadline;
-    private int paymentInformationAcceptances;
-    private String jobLocation;
-    private int workingHours;
+    private String WBIG_processInstanceID;
+    private String opening_name;
+    private Integer open_spots_initial;
+    private Integer open_spots_remaining;
+    private Double salary;
+    private String job_title;
+    private String job_description;
+    private String required_qualifications;
+    private String additional_information;
+    private Date deadline;
+    private Double rewardPerAcceptance;
+    private String job_location;
+    private Integer working_hours;
 
-    /*
-    Getter and Setter
-     */
-    public String getOpeningId() {
-        return openingId;
-    }
+    public JobOpeningInformation(String wbig_process_ID, String opening_name, Integer open_spots_initial,
+                                 Integer open_spots_remaining, Double salary, String job_title, String job_description,
+                                 String required_qualifications, String additional_information, Date deadline,
+                                 Double reward_per_acceptance, String job_location, Integer working_hours){
 
-    public void setOpeningId(String opening_ID) {
-        this.openingId = opening_ID;
-    }
-
-    public int getOpenSpots() {
-        return openSpots;
-    }
-
-    public void setOpenSpots(int openSpots) {
-        this.openSpots = openSpots;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
+        this.WBIG_processInstanceID = wbig_process_ID;
+        this.opening_name = opening_name;
+        this.open_spots_initial = open_spots_initial;
+        this.open_spots_remaining = open_spots_remaining;
         this.salary = salary;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getOpeningName() {
-        return openingName;
-    }
-
-    public void setOpeningName(String openingName) {
-        this.openingName = openingName;
-    }
-
-    public String getJobDescription() {
-        return jobDescription;
-    }
-
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
-    public String getRequiredQualifications() {
-        return requiredQualifications;
-    }
-
-    public void setRequiredQualifications(String requiredQualifications) {
-        this.requiredQualifications = requiredQualifications;
-    }
-
-    public String getAdditionalInformation() {
-        return additionalInformation;
-    }
-
-    public void setAdditionalInformation(String additionalInformation) {
-        this.additionalInformation = additionalInformation;
-    }
-
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDate deadline) {
+        this.job_title = job_title;
+        this.job_description = job_description;
+        this.required_qualifications = required_qualifications;
+        this.additional_information = additional_information;
         this.deadline = deadline;
+        this.rewardPerAcceptance = reward_per_acceptance;
+        this.job_location = job_location;
+        this.working_hours = working_hours;
     }
 
-    public int getPaymentInformationAcceptances() {
-        return paymentInformationAcceptances;
-    }
+    public JobOpeningInformation(){
 
-    public void setPaymentInformationAcceptances(int paymentInformationAcceptances) {
-        this.paymentInformationAcceptances = paymentInformationAcceptances;
-    }
-
-    public String getJobLocation() {
-        return jobLocation;
-    }
-
-    public void setJobLocation(String jobLocation) {
-        this.jobLocation = jobLocation;
-    }
-
-    public int getWorkingHours() {
-        return workingHours;
-    }
-
-    public void setWorkingHours(int workingHours) {
-        this.workingHours = workingHours;
     }
 }

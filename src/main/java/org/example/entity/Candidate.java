@@ -16,14 +16,18 @@ import java.util.List;
 @Entity
 public class Candidate {
     @Id
-    @GeneratedValue
-    private int candidate_id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer candidate_id;
     private String first_name;
     private String last_name;
     private Date birth_date;
     private String sex;
     private String email;
     private String skills;
+    private String location_country;
+    private String location_city;
+    private String title;
+    private String address;
 
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
     @JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id")
@@ -35,6 +39,15 @@ public class Candidate {
         this.birth_date = birth_date;
         this.sex        = sex;
         this.email      = email;
+    }
+    public Candidate(String first_name, String last_name, Date birth_date, String sex, String email, String title, String address){
+        this.first_name = first_name;
+        this.last_name  = last_name;
+        this.birth_date = birth_date;
+        this.sex        = sex;
+        this.email      = email;
+        this.title      = title;
+        this.address    = address;
     }
 }
 

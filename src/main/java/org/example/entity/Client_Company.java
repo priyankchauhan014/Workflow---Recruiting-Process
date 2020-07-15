@@ -15,8 +15,8 @@ import java.util.List;
 @Entity
 public class Client_Company {
     @Id
-    @GeneratedValue
-    private int company_id; //foreign key in Job_opening_Information Table
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer company_id; //foreign key in Job_opening_Information Table
     private String name;
     private String description;
     @OneToMany(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)
